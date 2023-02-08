@@ -1,13 +1,12 @@
-import express from 'express';
+import cheerio from 'cheerio';
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-    }
-);
 
-app.listen(PORT, () => {
-    console.log('Server is running on port 3000');
-    }
-);
+const $ = cheerio.load('<h2 class="title">Hello world</h2>')
+$('h2.title').text('Hello there!')
+$('h2').addClass('welcome')
+    
+console.log($.html());
+
+
+    
+
