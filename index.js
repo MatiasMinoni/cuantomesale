@@ -1,4 +1,3 @@
-import { next } from 'cheerio/lib/api/traversing';
 import express from 'express';
 import handlebars from 'express-handlebars';
 import session from 'express-session';
