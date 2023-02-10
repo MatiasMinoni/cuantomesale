@@ -1,6 +1,6 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
-import session from 'express-session';
+import session from 'cookie-session';
 import passport from 'passport';
 import LocalStrategy from 'passport-local'
 LocalStrategy.Strategy;
@@ -23,11 +23,10 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { maxAge: 6000 }
-}));
+    name: 'session',
+    keys: ['key1', 'key2'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }));
 passport.use(new LocalStrategy.Strategy(
     function (username, password, done) {
         if (username === 'admin' && password === 'admin') {
